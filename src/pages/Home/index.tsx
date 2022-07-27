@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import './styles.css';
 
-import { Card } from '../../components/Card';
+import { Card, CardProps} from '../../components/Card';
 
 export function Home() {
 
@@ -9,7 +9,7 @@ export function Home() {
   const [studentName, setStudentName] = useState();
 
   //add immutability to replace the previous state with a new state
-  const [students, setStudents] = useState([]);
+  const [students, setStudents] = useState<CardProps[]>([]);
 
   const [user, setUser] = useState({ name: '', avatar: '' });
 
