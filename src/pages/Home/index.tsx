@@ -3,15 +3,25 @@ import './styles.css';
 
 import { Card, CardProps} from '../../components/Card';
 
+type ProfileResponse = {
+  name: string;
+  avatar_url: string;
+};
+
+type User = {
+  name: string;
+  avatar: string;
+}
+
 export function Home() {
 
   //add state to reflect variable value in app interface via react' reconciliation algorithm
-  const [studentName, setStudentName] = useState();
+  const [studentName, setStudentName] = useState('');
 
   //add immutability to replace the previous state with a new state
   const [students, setStudents] = useState<CardProps[]>([]);
 
-  const [user, setUser] = useState({ name: '', avatar: '' });
+  const [user, setUser] = useState<User>({} as User);
 
   function handleAddStudent() {
     const newStudent = {
@@ -33,7 +43,7 @@ export function Home() {
     async function fetchData() {
       let url = 'https://api.github.com/users/fabiojdantas1';
       const res = await fetch(url);
-      const data = await res.json();
+      const data = await res.json() as ProfileResponse;
       console.log('DATA ===>', data);
       setUser({
         name: data.name,
